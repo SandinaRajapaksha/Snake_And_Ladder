@@ -1,16 +1,17 @@
 #ifndef BLUEPRINTS_H
 #define BLUEPRINTS_H
 
+//square
 typedef enum{
     none,
     snakeHead,
     ladderBottom
-}speciality;
+} speciality;
 
 typedef struct{
     int squareNumber;
     speciality specialSquare;
-}sqaure;
+} square;
 
 
 #endif
