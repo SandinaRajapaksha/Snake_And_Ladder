@@ -19,7 +19,6 @@ int movePlayer(player Player_x ,int steps){
         Player_x.position -= steps;
         printf("Too high than the end point.. retry in next turn");
         return Player_x.position;
-    
     }
     printf("player %c moved to square : %d \n" , Player_x.name, Player_x.position);
     return Player_x.position;
@@ -33,6 +32,7 @@ int SnakeLadderCheck(player Player_x , square board[30]){
     }
     if(board[Player_x.position - 1].specialSquare == ladderBottom){
         int newPositionAfterLadder = board[Player_x.position -1].teleport;
+        printf("Got into a ladder :) teleporting to square %d\n", board[Player_x.position -1].teleport);
         return newPositionAfterLadder;
     }
     return  Player_x.position ;
@@ -41,9 +41,6 @@ int winnerCheck(player Player_x){
     if(Player_x.position == 30){
         int NewStatusAfterMove = win;
         return NewStatusAfterMove;
-    }
-    if(Player_x.position > 30){
-        return nearWin ;
     }
 }
 
@@ -114,21 +111,13 @@ int main(void){
             winner = 'A';
             break;
         }
-        if(player1.playerStatus == nearWin){
-            player1.position = player1.position - (player1.position % 30);
-        }
-
         if(player2.playerStatus == win){
             winner = 'B';
             break;
         }
-        if(player2.playerStatus == nearWin){
-            player2.position = player2.position - (player2.position % 30);
-        }
-
     }
 
-    printf("Yaaay .....  Player %d win", winner);
+    printf("Yaaay .....  Player %c win\n", winner);
     
     return 0;
 }
