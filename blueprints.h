@@ -11,6 +11,7 @@ typedef enum{
 typedef struct{
     int squareNumber;
     speciality specialSquare;
+    int teleport;
 } square;
 
 
