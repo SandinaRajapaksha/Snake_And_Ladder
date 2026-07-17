@@ -76,7 +76,37 @@ int main(void){
     player player2= {'B',1,playing};
 
 
-    printf("%d\n", diceRoll());
+    int player_1_steps;
+    int player_2_steps;
+    char winner;
+    while(true){
 
+         //player 1 chance
+        player_1_steps = 0;
+        player_1_steps = diceRoll();
+        player1.position = movePlayer(player1,player_1_steps);
+        player1.position = SnakeLadderCheck(player1,board);
+        player1.playerStatus = winnerCheck(player1);
+
+        //player 2 chance
+        player_2_steps = 0;
+        player_2_steps = diceRoll();
+        player2.position = movePlayer(player2,player_2_steps);
+        player2.position = SnakeLadderCheck(player2,board);
+        player2.playerStatus = winnerCheck(player2);
+
+        if(player1.playerStatus == win){
+            winner = 'A';
+            break;
+        }
+        if(player2.playerStatus == win){
+            winner = 'B';
+            break;
+        }
+
+    }
+    
     return 0;
 }
+
+
