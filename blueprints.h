@@ -14,5 +14,16 @@ typedef struct{
     int teleport;
 } square;
 
+typedef enum{
+    win,
+    playing
+} status;
+
+typedef struct{
+    char name;
+    int position;
+    status playerStatus;
+} player;
+
 
 #endif
