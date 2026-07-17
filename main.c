@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 //funtionality
+
 int diceRoll(void){
     srand(time(NULL));
     int steps = rand() % 6 + 1 ; 
@@ -14,16 +15,20 @@ int diceRoll(void){
 int movePlayer(player Player_x ,int steps){
 
     Player_x.position = Player_x.position + steps;
-    printf("player %c moved to square : %d \n" , Player_x.name, Player_x.position);
-    if(Player_x.position > 100){
+    if(Player_x.position > 30){
+        Player_x.position -= steps;
         printf("Too high than the end point.. retry in next turn");
+        return Player_x.position;
+    
     }
+    printf("player %c moved to square : %d \n" , Player_x.name, Player_x.position);
     return Player_x.position;
 }
 int SnakeLadderCheck(player Player_x , square board[30]){
 
     if(board[Player_x.position - 1].specialSquare == snakeHead){
         int newPositionAfterSnake = board[Player_x.position -1].teleport;
+        printf("Caught by a snake  :(  \n teleporting to square %d\n", board[Player_x.position -1].teleport);
         return newPositionAfterSnake;
     }
     if(board[Player_x.position - 1].specialSquare == ladderBottom){
