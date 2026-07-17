@@ -6,7 +6,7 @@
 int main(void){
 
     //board
-    square board[25];
+    square board[30];
 
     //modeling the board
     board[0] = (square){1,none};
