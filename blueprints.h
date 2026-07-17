@@ -17,7 +17,8 @@ typedef struct{
 // player
 typedef enum{
     win,
-    playing
+    playing,
+    nearWin
 } status;
 
 typedef struct{

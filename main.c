@@ -3,6 +3,7 @@
 #include "blueprints.h"
 #include "activities.c"
 #include <time.h>
+#include <unistd.h>
 
 //funtionality
 int diceRoll(void){
@@ -13,7 +14,10 @@ int diceRoll(void){
 int movePlayer(player Player_x ,int steps){
 
     Player_x.position = Player_x.position + steps;
-    printf("player moved to square : %d " , Player_x.position);
+    printf("player %c moved to square : %d \n" , Player_x.name, Player_x.position);
+    if(Player_x.position > 100){
+        printf("Too high than the end point.. retry in next turn");
+    }
     return Player_x.position;
 }
 int SnakeLadderCheck(player Player_x , square board[30]){
@@ -29,9 +33,12 @@ int SnakeLadderCheck(player Player_x , square board[30]){
     return  Player_x.position ;
 }
 int winnerCheck(player Player_x){
-    if(Player_x.position == 100){
+    if(Player_x.position == 30){
         int NewStatusAfterMove = win;
         return NewStatusAfterMove;
+    }
+    if(Player_x.position > 30){
+        return nearWin ;
     }
 }
 
@@ -88,6 +95,7 @@ int main(void){
         player1.position = SnakeLadderCheck(player1,board);
         player1.playerStatus = winnerCheck(player1);
 
+        sleep(1);
         //player 2 chance
         player_2_steps = 0;
         player_2_steps = diceRoll();
@@ -95,16 +103,27 @@ int main(void){
         player2.position = SnakeLadderCheck(player2,board);
         player2.playerStatus = winnerCheck(player2);
 
+        sleep(1);
+
         if(player1.playerStatus == win){
             winner = 'A';
             break;
         }
+        if(player1.playerStatus == nearWin){
+            player1.position = player1.position - (player1.position % 30);
+        }
+
         if(player2.playerStatus == win){
             winner = 'B';
             break;
         }
+        if(player2.playerStatus == nearWin){
+            player2.position = player2.position - (player2.position % 30);
+        }
 
     }
+
+    printf("Yaaay .....  Player %d win", winner);
     
     return 0;
 }
