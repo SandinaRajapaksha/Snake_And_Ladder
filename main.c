@@ -10,7 +10,24 @@ int diceRoll(void){
     int steps = rand() % 6 + 1 ; 
     return steps;
 }
+int movePlayer(player Player_x ,int steps){
 
+    Player_x.position = Player_x.position + steps;
+    printf("player moved to square : %d " , Player_x.position);
+    return Player_x.position;
+}
+int SnakeLadderCheck(player Player_x , square board[30]){
+
+    if(board[Player_x.position - 1].specialSquare == snakeHead){
+        int newPositionAfterSnake = board[Player_x.position -1].teleport;
+        return newPositionAfterSnake;
+    }
+    if(board[Player_x.position - 1].specialSquare == ladderBottom){
+        int newPositionAfterLadder = board[Player_x.position -1].teleport;
+        return newPositionAfterLadder;
+    }
+    return  Player_x.position ;
+}
 int main(void){
 
     //board
@@ -64,8 +81,8 @@ int main(void){
 
     // initializing players
     
-    player player1 = {'A',0,playing};
-    player player2= {'B',0,playing};
+    player player1 = {'A',1,playing};
+    player player2= {'B',1,playing};
 
     printf("%d\n", diceRoll());
 
