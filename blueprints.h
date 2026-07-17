@@ -27,4 +27,6 @@ typedef struct{
 } player;
 
 
+//functionality
+// int diceRoll(void);
 #endif

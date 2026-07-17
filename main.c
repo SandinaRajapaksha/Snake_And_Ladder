@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include "blueprints.h"
 #include "activities.c"
+#include <time.h>
+
+//funtionality
+int diceRoll(void){
+    srand(time(NULL));
+    int steps = rand() % 6 + 1 ; 
+    return steps;
+}
 
 int main(void){
 
@@ -59,6 +67,7 @@ int main(void){
     player player1 = {'A',0,playing};
     player player2= {'B',0,playing};
 
+    printf("%d\n", diceRoll());
 
     return 0;
 }
