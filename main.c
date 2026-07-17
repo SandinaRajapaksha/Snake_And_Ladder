@@ -28,6 +28,13 @@ int SnakeLadderCheck(player Player_x , square board[30]){
     }
     return  Player_x.position ;
 }
+int winnerCheck(player Player_x){
+    if(Player_x.position == 100){
+        int NewStatusAfterMove = win;
+        return NewStatusAfterMove;
+    }
+}
+
 int main(void){
 
     //board
@@ -65,24 +72,9 @@ int main(void){
     board[28] = (square){29,none};
     board[29] = (square){30,none};
 
-
-    // snake heads 
-    // 24 to 1
-    // 21 to 9
-    // 17 to 4
-    // 19 to 7
-    //
-    // ladder bottoms
-    // 11 to 26
-    // 3 to 22
-    // 5 to 8
-    // 20 to 29
-    //
-
-    // initializing players
-    
     player player1 = {'A',1,playing};
     player player2= {'B',1,playing};
+
 
     printf("%d\n", diceRoll());
 
