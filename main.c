@@ -52,6 +52,13 @@ int main(void){
     // 3 to 22
     // 5 to 8
     // 20 to 29
+    //
+
+    // initializing players
+    
+    player player1 = {'A',0,playing};
+    player player2= {'B',0,playing};
+
 
     return 0;
 }
