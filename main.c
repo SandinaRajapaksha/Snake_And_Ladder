@@ -46,6 +46,7 @@ int winnerCheck(player Player_x) {
         int NewStatusAfterMove = win;
         return NewStatusAfterMove;
     }
+    return Player_x.playerStatus;
 }
 
 int main(void) {
